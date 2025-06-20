@@ -1,28 +1,23 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { supabase } from "./SuperBaseClient";
+import { supabase } from "../SupaBaseClient";
 
 export const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
   const [session, setSession] = useState(undefined);
 
+  //session store
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: session }) => {
+      setSession(session);
+    });
 
+    supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+    });
+  }, []);
 
-//session store
-useEffect(()=>{
-supabase.auth.getSession().then(({data:session})=>{
-setSession(session)
-})
-
-supabase.auth.onAuthStateChange((_event,session)=>{
-    setSession(session)
-})
-
-},[])
-
-
-
-//   signUp
+  //   signUp
 
   const signUpNewUser = async (email, password) => {
     try {
@@ -42,7 +37,7 @@ supabase.auth.onAuthStateChange((_event,session)=>{
     }
   };
 
-// signin
+  // signin
 
   const signInUser = async (email, password) => {
     try {
@@ -61,26 +56,21 @@ supabase.auth.onAuthStateChange((_event,session)=>{
     }
   };
 
+  // signOut
 
-// signOut
+  const signOutUser = async () => {
+    try {
+      const { error } = await supabase.auth.signOut();
 
-const signOutUser=async()=>{
-    try{
-        const {error}=await supabase.auth.signOut();
-
-        if(error){
+      if (error) {
         console.log("Signout not successfull", error);
-        return {success:false,error}
-        }
-        return {success:true}
-    }catch(error){
-        console.error("error during signout",error)
-
+        return { success: false, error };
+      }
+      return { success: true };
+    } catch (error) {
+      console.error("error during signout", error);
     }
-
-    
-}
-
+  };
 
   return (
     <AuthContext.Provider
@@ -91,7 +81,6 @@ const signOutUser=async()=>{
   );
 };
 
-
-export const userAuth=()=>{
-    return useContext(AuthContext);
-}
+export const userAuth = () => {
+  return useContext(AuthContext);
+};
