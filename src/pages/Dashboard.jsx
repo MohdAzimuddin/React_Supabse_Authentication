@@ -20,11 +20,13 @@ const Dashboard = () => {
   };
 
   return (
-    <div>
-      <h3>
-        Welcome,{session?.user?.email} to Supabase Authentication Dahboard!
+    <div className="flex flex-col items-center justify-center gap-6">
+      <h3 className="mt-16 text-lg text-center">
+      <span className="block">Welcome,<span className="font-bold mx-1">{session?.user?.email}</span>  </span>  <span className="text-green-300">
+       Supabase</span> Authentication Dahboard!
       </h3>
-      <button onClick={handleSignOut}>Sign Out</button>
+      <button onClick={handleSignOut} className="flex items-center p-2 bg-red-500 rounded-md">Sign Out</button>
+        
     </div>
   );
 };
