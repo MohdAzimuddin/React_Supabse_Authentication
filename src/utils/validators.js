@@ -1,24 +1,21 @@
-// validatinf email
+// 
 
-export const validateEmail = (email) => {
-  const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!email) {
-    return "Email is required.";
-  }
-  if (!re.test(email)) {
-    return "Invalid Email Format";
-  }
-  return "";
-};
+import validator from "validator";
 
-// validating password
-
-export const validatePassword = (password) => {
-  if (!password) {
-    return "Password is Required";
+export const validateEmail=(email)=>{
+  if(!email){
+    return "Email is required"
+  }if(!validator.isEmail(email)){
+    return "Invalid Email Format"
   }
-  if (password.length < 6) {
+return ""
+}
+
+export const validatePassword=(password)=>{
+  if(!password){
+    return "password is required"
+  }
+  if(!validator.isLength(password,{min:6})){
     return "Password must be at least 6 characters.";
   }
-  return "";
-};
+}
