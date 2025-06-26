@@ -4,6 +4,7 @@ import { userAuth } from "../context/AuthContext";
 import EmailInput from "../components/common/EmailInput";
 import PasswordInput from "../components/common/PasswordInput";
 import { validateEmail, validatePassword } from "../utils/validators";
+import toast from "react-hot-toast";
 
 const Signin = () => {
   // states
@@ -32,12 +33,17 @@ const Signin = () => {
       const result = await signInUser(email, password);
       if (result.success) {
         navigate("/dashboard");
-        alert("Signed in successfully!");
+         toast.success('Signed-in successfully!');
+         setTimeout(() => {
+           toast.success(`welcome Back! ${email} `)
+         }, 2500);
       } else {
-        alert(result.error.message);
+        toast.error("Sign-in failed,Invalid credential!");
       }
     } catch (err) {
       console.error("Unexpected error", err);
+          toast.error("Something went wrong. Please try again.");
+      
     } finally {
       setLoading(false);
     }

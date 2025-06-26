@@ -4,6 +4,7 @@ import { userAuth } from "../context/AuthContext";
 import EmailInput from "../components/common/EmailInput";
 import PasswordInput from "../components/common/PasswordInput";
 import { validateEmail, validatePassword } from "../utils/validators";
+import toast from "react-hot-toast";
 
 const SignUp = () => {
   // states
@@ -31,12 +32,16 @@ const SignUp = () => {
       const result = await signUpNewUser(email, password);
       if (result.success) {
         navigate("/dashboard");
-        alert("Sign-up successful!");
+      toast.success('Signed-up successfully!');
+        setTimeout(() => {
+           toast.success(`welcome! ${email} `)
+         }, 2500);
       } else {
-        alert(result.error.message);
+  toast.error("Sign-up failed.");
       }
     } catch (err) {
       console.error("Unexpected error", err);
+      toast.error("Something went wrong. Please try again.");
     } finally {
       setLoading(false);
     }
