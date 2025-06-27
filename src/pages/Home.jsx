@@ -15,7 +15,7 @@ const Home = () => {
       icon: Lock,
       title: "Secure Sign-In",
       description:
-        "Access your account with confidence through our encrypted authentication system.",
+        "Access your account with confidence through our encrypted authentication system. Sign in with email/password or use Google and GitHub for quick access.",
     },
     {
       id: 3,
@@ -39,7 +39,7 @@ const Home = () => {
 
           <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-12">
             Experience secure, seamless authentication with A-grade security and
-            modern design principles.
+            modern design principles. Sign up with email or continue with Google and GitHub.
           </p>
 
           {/* Card */}
