@@ -1,10 +1,13 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { userAuth } from "../context/AuthContext";
 import EmailInput from "../components/common/EmailInput";
 import PasswordInput from "../components/common/PasswordInput";
 import { validateEmail, validatePassword } from "../utils/validators";
 import toast from "react-hot-toast";
+import SignInwithProviderbutton from "../components/button/SignInwithProviderbutton";
+import { FcGoogle } from "react-icons/fc";
+import { FaGithub } from "react-icons/fa";
 
 const Signin = () => {
   // states
@@ -14,8 +17,13 @@ const Signin = () => {
   const [passwordError, setPasswordError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const { signInUser } = userAuth();
-  const navigate = useNavigate();
+  const { signInUser, signInWithProvider, session } = userAuth();
+
+  // handling session
+
+  if (session) {
+    return <Navigate to="/dashboard" replace />;
+  }
 
   // handling form submit
 
@@ -32,18 +40,32 @@ const Signin = () => {
     try {
       const result = await signInUser(email, password);
       if (result.success) {
-        navigate("/dashboard");
-         toast.success('Signed-in successfully!');
-         setTimeout(() => {
-           toast.success(`welcome Back! ${email} `)
-         }, 2500);
+        toast.success("Signed-in successfully!");
+        setTimeout(() => {
+          toast.success(`welcome Back! ${email} `);
+        }, 2500);
       } else {
         toast.error("Sign-in failed,Invalid credential!");
       }
     } catch (err) {
       console.error("Unexpected error", err);
-          toast.error("Something went wrong. Please try again.");
-      
+      toast.error("Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // handle Auth with provider
+  const handleOAuthSignIn = async (provider) => {
+    setLoading(true);
+    try {
+      const result = await signInWithProvider(provider);
+      if (!result.success) {
+        toast.error(`${provider} sign-in failed`);
+      }
+    } catch (err) {
+      console.error("Unexpected error", err);
+      toast.error("Something went wrong. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -72,13 +94,27 @@ const Signin = () => {
             onChange={(e) => setPassword(e.target.value)}
             error={passwordError}
           />
+        </div>
+        <div className="flex flex-col mt-8">
           <button
             type="submit"
             disabled={loading}
-            className="w-full text-md md:text-xl mt-6 bg-green-400 p-2 font-bold rounded hover:bg-green-600"
+            className="w-full text-md md:text-xl bg-green-400 p-2 font-bold rounded hover:bg-green-600"
           >
             Sign In
           </button>
+          <SignInwithProviderbutton
+            icon={<FcGoogle className="w-6 h-6" />}
+            name="Sign in with Google"
+            handleOAuthSignIn={() => handleOAuthSignIn("google")}
+            customstyle={"bg-zinc-800"}
+          />
+          <SignInwithProviderbutton
+            icon={<FaGithub className="text-white w-6 h-6" />}
+            name="Sign in with Github"
+            handleOAuthSignIn={() => handleOAuthSignIn("github")}
+            customstyle={"bg-zinc-500"}
+          />
         </div>
       </form>
     </div>
