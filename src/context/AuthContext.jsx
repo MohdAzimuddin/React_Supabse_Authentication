@@ -114,7 +114,8 @@ export const AuthContextProvider = ({ children }) => {
       const { data, error } = await supabase.auth.signInWithOAuth({
         provider,
         options: {
-          redirectTo: "https://react-supabse-authentication.vercel.app/dashboard",
+          redirectTo:
+            "https://react-supabse-authentication.vercel.app/dashboard",
         },
       });
 
