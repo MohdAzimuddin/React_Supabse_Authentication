@@ -46,9 +46,9 @@ src/
 ### 🌟 User Dashboard
 
 * 👤 Profile Overview
-<!-- * 🕵️ Security Insights
-* 📊 Recent Activity Log
-* 🎛 Toggleable Settings (2FA, Notifications) -->
+* 🕵️ Security Insights
+<!-- * 📊 Recent Activity Log -->
+<!-- * 🎛 Toggleable Settings (2FA, Notifications) -->
 
 ### 💡 Input Validations
 
@@ -120,11 +120,11 @@ npm run dev
 ---
 
 ## 📸 Dashboard Preview
-<!-- 
-* Security Overview with animated progress bar
-* Profile Info (editable)
-* Activity Logs with location/device
-* Toggleable 2FA & Notifications -->
+
+<!-- * Security Overview with animated progress bar -->
+* Profile Info 
+<!-- * Activity Logs with location/device -->
+<!-- * Toggleable 2FA & Notifications -->
 
 ---
 
