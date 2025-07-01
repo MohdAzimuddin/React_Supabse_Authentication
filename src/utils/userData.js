@@ -41,7 +41,7 @@ export const getUserData = (session) => {
       id: 5,
       icon: Shield,
       name: "Authentication",
-      data: user?.app_metadata.providers?.[1] || user?.app_metadata.provider,
+      data: (user?.app_metadata.providers?.[1] || user?.app_metadata.provider ||"").toUpperCase(),
       desc: "Primary auth provider",
     },
     {
