@@ -9,7 +9,7 @@ const UserdataCard = ({ data }) => {
             </span>
             <span className="text-md">{item.name}</span>
           </div>
-          <p className="text-lg">{item.data}</p>
+          <p className="text-lg truncate cursor-help" title={item.fullData||item.data}>{item.data}</p>
           <p className="text-sm">{item.desc}</p>
         </div>
       ))}

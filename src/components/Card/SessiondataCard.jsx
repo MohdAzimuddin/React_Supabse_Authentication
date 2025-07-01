@@ -8,15 +8,17 @@ const SessiondataCard = ({ data }) => {
         </span>
         <span>{data.name}</span>
       </div>
-
+<div className="grid grid-cols-1 lg:grid-cols-2 gap-8" >
       {data.rows.map((items, index) => (
         <div key={index}>
           <div>
-            <p>{items.desc}</p>
-            <p className="mt-2 p-1 bg-zinc-700">{items.data}</p>
+            <p className="md:px-2">{items.desc}</p>
+            <p className="mt-2 py-1 px-3 bg-zinc-700 truncate cursor-help" title={items.fullData||items.data
+            }>{items.data}</p>
           </div>
         </div>
       ))}
+      </div>
     </div>
   );
 };
