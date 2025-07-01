@@ -72,52 +72,52 @@ const Signin = () => {
   };
 
   return (
-    <div className="max-w-sm sm:max-w-md min-h-96 m-auto mt-16 md:max-w-lg shadow-md shadow-green-200 hover:shadow-green-400 p-6">
-      <form onSubmit={handleSubmit}>
-        <div className="mx-1">
-          <h3 className="text-md">Sign in now!</h3>
-          <p className="text-md mt-2">
-            Don't have an Account?
-            <span className="mx-2 text-indigo-400 active:text-indigo-100">
-              <Link to="/signup">Signup!</Link>
-            </span>
-          </p>
-        </div>
-        <div className="flex flex-col gap-6 mt-6">
-          {/* import email field */}
-          <EmailInput
-            onChange={(e) => setEmail(e.target.value)}
-            error={emailError}
-          />
-          {/* import password filed */}
-          <PasswordInput
-            onChange={(e) => setPassword(e.target.value)}
-            error={passwordError}
-          />
-        </div>
-        <div className="flex flex-col mt-8">
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full text-md md:text-xl bg-green-400 p-2 font-bold rounded hover:bg-green-600"
-          >
-            Sign In
-          </button>
-          <SignInwithProviderbutton
-            icon={<FcGoogle className="w-6 h-6" />}
-            name="Sign in with Google"
-            handleOAuthSignIn={() => handleOAuthSignIn("google")}
-            customstyle={"bg-zinc-800"}
-          />
-          <SignInwithProviderbutton
-            icon={<FaGithub className="text-white w-6 h-6" />}
-            name="Sign in with Github"
-            handleOAuthSignIn={() => handleOAuthSignIn("github")}
-            customstyle={"bg-zinc-500"}
-          />
-        </div>
-      </form>
-    </div>
+      <div className="max-w-sm sm:max-w-md min-h-96 m-auto mt-16 md:max-w-lg shadow-md shadow-green-200 hover:shadow-green-400 p-6">
+        <form onSubmit={handleSubmit}>
+          <div className="mx-1">
+            <h3 className="text-md">Sign in now!</h3>
+            <p className="text-md mt-2">
+              Don't have an Account?
+              <span className="mx-2 text-indigo-400 active:text-indigo-100">
+                <Link to="/signup">Signup!</Link>
+              </span>
+            </p>
+          </div>
+          <div className="flex flex-col gap-6 mt-6">
+            {/* import email field */}
+            <EmailInput
+              onChange={(e) => setEmail(e.target.value)}
+              error={emailError}
+            />
+            {/* import password filed */}
+            <PasswordInput
+              onChange={(e) => setPassword(e.target.value)}
+              error={passwordError}
+            />
+          </div>
+          <div className="flex flex-col mt-8">
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full text-md md:text-xl bg-green-400 p-2 font-bold rounded hover:bg-green-600"
+            >
+              Sign In
+            </button>
+            <SignInwithProviderbutton
+              icon={<FcGoogle className="w-6 h-6" />}
+              name="Sign in with Google"
+              handleOAuthSignIn={() => handleOAuthSignIn("google")}
+              customstyle={"bg-zinc-800"}
+            />
+            <SignInwithProviderbutton
+              icon={<FaGithub className="text-white w-6 h-6" />}
+              name="Sign in with Github"
+              handleOAuthSignIn={() => handleOAuthSignIn("github")}
+              customstyle={"bg-zinc-500"}
+            />
+          </div>
+        </form>
+      </div>
   );
 };
 

@@ -32,12 +32,12 @@ const SignUp = () => {
       const result = await signUpNewUser(email, password);
       if (result.success) {
         navigate("/dashboard");
-      toast.success('Signed-up successfully!');
+        toast.success("Signed-up successfully!");
         setTimeout(() => {
-           toast.success(`welcome! ${email} `)
-         }, 2500);
+          toast.success(`welcome! ${email} `);
+        }, 2500);
       } else {
-  toast.error("Sign-up failed.");
+        toast.error("Sign-up failed.");
       }
     } catch (err) {
       console.error("Unexpected error", err);
@@ -48,7 +48,7 @@ const SignUp = () => {
   };
 
   return (
-    <div className="max-w-sm sm:max-w-md min-h-96 m-auto mt-16 md:max-w-lg shadow-md shadow-green-200 hover:shadow-green-400 p-6">
+    <div className="max-h-screen max-w-sm sm:max-w-md min-h-96 m-auto mt-16 md:max-w-lg shadow-md shadow-green-200 hover:shadow-green-400 p-6">
       <form onSubmit={handleSubmit}>
         <div className="mx-1">
           <h3 className="text-md">Sign up now!</h3>
