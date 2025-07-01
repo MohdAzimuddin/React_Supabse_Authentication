@@ -1,5 +1,6 @@
 import { TfiEmail } from "react-icons/tfi";
 import { Calendar, Key, Shield, Timer, User, User2 } from "lucide-react";
+import { formatDate, shortText } from "./format";
 
 //
 
@@ -18,21 +19,22 @@ export const getUserData = (session) => {
       id: 2,
       icon: User,
       name: "User ID",
-      data: user?.id,
+      data: shortText(user?.id),
+      fullData:user?.id,
       desc: "Unique identifier",
     },
     {
       id: 3,
       icon: Calendar,
       name: "Member Since",
-      data: user?.created_at,
+      data: formatDate(user?.created_at),
       desc: "Account creation date",
     },
     {
       id: 4,
       icon: Timer,
       name: "Last Sign In",
-      data: identity?.last_sign_in_at,
+      data: formatDate(identity?.last_sign_in_at),
       desc: "",
     },
     {
@@ -58,10 +60,13 @@ export const getSessionData = (session) => {
     icon: Key,
     name: "Session Information",
     rows: [
-      { desc: "Session Token", data: session?.access_token },
+      { desc: "Session Token",
+       data:shortText(session?.access_token),
+       fullData:session?.access_token
+       },
       {
         desc: "Token Expires",
-        data: session?.expires_at,
+        data: formatDate(session?.expires_at),
       },
     ],
   };
