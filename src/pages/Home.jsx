@@ -27,9 +27,9 @@ const Home = () => {
   ];
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col ">
       {/* Main*/}
-      <main className="flex items-center justify-center px-4">
+      <main className="flex items-center justify-center px-4 py-8">
         <div className="max-w-5xl mx-auto text-center">
           {/* title */}
           <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-8">
