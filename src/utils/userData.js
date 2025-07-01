@@ -2,7 +2,7 @@ import { TfiEmail } from "react-icons/tfi";
 import { Calendar, Key, Shield, Timer, User, User2 } from "lucide-react";
 import { formatDate, shortText } from "./format";
 
-//
+//UserData
 
 export const getUserData = (session) => {
   const user = session?.user;
@@ -20,7 +20,7 @@ export const getUserData = (session) => {
       icon: User,
       name: "User ID",
       data: shortText(user?.id),
-      fullData:user?.id,
+      fullData: user?.id,
       desc: "Unique identifier",
     },
     {
@@ -41,7 +41,7 @@ export const getUserData = (session) => {
       id: 5,
       icon: Shield,
       name: "Authentication",
-      data: user?.app_metadata.providers?.[1]|| user?.app_metadata.provider,
+      data: user?.app_metadata.providers?.[1] || user?.app_metadata.provider,
       desc: "Primary auth provider",
     },
     {
@@ -54,16 +54,17 @@ export const getUserData = (session) => {
   ];
 };
 
-//
+//Session Data
 export const getSessionData = (session) => {
   return {
     icon: Key,
     name: "Session Information",
     rows: [
-      { desc: "Session Token",
-       data:shortText(session?.access_token),
-       fullData:session?.access_token
-       },
+      {
+        desc: "Session Token",
+        data: shortText(session?.access_token),
+        fullData: session?.access_token,
+      },
       {
         desc: "Token Expires",
         data: formatDate(session?.expires_at),
