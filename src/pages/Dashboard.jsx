@@ -65,7 +65,7 @@ const Dashboard = () => {
       </nav>
       {/* Hero one */}
       <main className="py-6 mx-3 sm:mx-8 md:mx-24">
-        <h1 className="text-xl">Welcome back, {}</h1>
+        <h1 className="text-xl">Welcome back, {session?.user?.user_metadata?.full_name||session?.user?.email}</h1>
         <p className="text-md md:text-lg text-gray-400 mt-1">
           Here's yours accout overview and recent activity
         </p>
