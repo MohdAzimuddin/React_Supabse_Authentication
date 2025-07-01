@@ -1,7 +1,11 @@
 import React from "react";
+import toast from "react-hot-toast";
+import { GoSignOut } from "react-icons/go";
 import { userAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
-import toast from "react-hot-toast";
+import { getSessionData, getUserData } from "../utils/userData";
+import UserdataCard from "../components/Card/UserdataCard";
+import SessiondataCard from "../components/Card/SessiondataCard";
 
 const Dashboard = () => {
   const { session, signOutUser } = userAuth();
@@ -10,32 +14,47 @@ const Dashboard = () => {
   const handleSignOut = async (e) => {
     e.preventDefault();
     try {
-      const response = await signOutUser();
-      if (response.success) {
+      const result = await signOutUser();
+      if (result.success) {
         navigate("/");
-        toast.success("loged out successfullly");
+        toast.success("logged out successfully");
       }
     } catch (error) {
-      console.error("error while signing out", error);
-      toast.error("something went wrong")
+      console.error("error while signing out:", error);
+      toast.error("something went wrong");
     }
   };
 
   return (
-    <div className="flex flex-col items-center justify-center gap-6">
-      <h3 className="mt-16 text-lg text-center">
-        <span className="block">
-          Welcome,<span className="font-bold mx-1">{session?.user?.email}</span>{" "}
-        </span>{" "}
-        <span className="text-green-300">Supabase</span> Authentication
-        Dahboard!
-      </h3>
-      <button
-        onClick={handleSignOut}
-        className="flex items-center p-2 bg-red-500 rounded-md"
-      >
-        Sign Out
-      </button>
+    <div className="w-full bg-gray-900 overflow-hidden">
+      <nav className="bg-gray-800 py-4 border-2 border-gray-700">
+        <div className="flex items-center justify-between mx-4 sm:mx-8 md:mx-24">
+          <div className="flex items-center justify-center">
+            <div className="h-8 w-8 text-lg mr-3 bg-green-400  rounded-full flex items-center justify-center">
+              {" "}
+              <span>D</span>{" "}
+            </div>
+            <span className="text-2xl hidden sm:block">Dashboard</span>
+          </div>
+          <button
+            onClick={handleSignOut}
+            className="flex items-center bg-red-600 p-2 rounded-md hover:bg-red-700"
+          >
+            <span className="mr-2">
+              <GoSignOut />
+            </span>
+            Sign Out
+          </button>
+        </div>
+      </nav>
+      <main className="py-6 mx-3 sm:mx-8 md:mx-24">
+        <h1 className="text-xl">Welcome back, {}</h1>
+        <p className="text-md md:text-lg text-gray-400 mt-1">
+          Here's yours accout overview and recent activity
+        </p>
+        <UserdataCard data={getUserData(session)} />
+        <SessiondataCard data={getSessionData(session)} />
+      </main>
     </div>
   );
 };
