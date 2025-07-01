@@ -19,6 +19,7 @@ export const AuthContextProvider = ({ children }) => {
         console.error("Error getting session:", error);
       }
       setSession(session);
+      console.log("session from initial session:-",session)
       setLoading(false);
     };
 
@@ -125,7 +126,7 @@ export const AuthContextProvider = ({ children }) => {
         console.error("OAuth sign-in-error:", error);
         return { success: false, error };
       }
-
+     
       return { success: true, data };
     } catch (err) {
       console.error("Unexpected OAuth error", err);
