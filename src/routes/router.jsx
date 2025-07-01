@@ -7,8 +7,14 @@ import Dashboard from "../pages/Dashboard";
 
 import NotFound from "../pages/NotFound";
 import PrivateRoute from "./PrivateRoute";
+import Layout from "../layout/Layout";
 
 export const router = createBrowserRouter([
+  {
+path:"/",
+element:<Layout/>,
+children:[
+
   { path: "/", element: <Home /> },
   { path: "/signin", element: <Signin /> },
   { path: "/signup", element: <SignUp /> },
@@ -21,5 +27,6 @@ export const router = createBrowserRouter([
     ),
   },
   { path: "*", element: <NotFound /> },
-  {},
+]
+}
 ]);
