@@ -1,12 +1,23 @@
 import { TfiEmail } from "react-icons/tfi";
 import { Calendar, Key, Shield, Timer, User, User2 } from "lucide-react";
 import { formatDate, shortText } from "./format";
+import { differenceInMinutes } from "date-fns";
 
 //UserData
 
 export const getUserData = (session) => {
   const user = session?.user;
-  const identity = session?.user?.identities?.[0];
+  // const identity = session?.user?.identities?.[0];
+
+
+  // minutesAgo 
+  const minutesAgo = user?.last_sign_in_at
+    ? differenceInMinutes(new Date(),user?.last_sign_in_at)
+    : null;
+
+  console.log("Created At:", formatDate(user?.created_at));
+  console.log("Last Sign In:", formatDate(user?.last_sign_in_at));
+
   return [
     {
       id: 1,
@@ -34,14 +45,18 @@ export const getUserData = (session) => {
       id: 4,
       icon: Timer,
       name: "Last Sign In",
-      data: formatDate(identity?.last_sign_in_at),
-      desc: "",
+      data: formatDate(user?.last_sign_in_at),
+      desc: minutesAgo!==null?`${minutesAgo} minutes ago`:"unknown",
     },
     {
       id: 5,
       icon: Shield,
       name: "Authentication",
-      data: (user?.app_metadata.providers?.[1] || user?.app_metadata.provider ||"").toUpperCase(),
+      data: (
+        user?.app_metadata.providers?.[1] ||
+        user?.app_metadata.provider ||
+        ""
+      ).toUpperCase(),
       desc: "Primary auth provider",
     },
     {
