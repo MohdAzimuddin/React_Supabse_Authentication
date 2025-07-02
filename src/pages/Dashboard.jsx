@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { getSessionData, getUserData } from "../utils/userData";
 import UserdataCard from "../components/Card/UserdataCard";
 import SessiondataCard from "../components/Card/SessiondataCard";
+import ProfileImage from "../components/Navbar/ProfileImage";
 
 const Dashboard = () => {
   const { session, signOutUser } = userAuth();
@@ -51,6 +52,7 @@ const Dashboard = () => {
           </div>
           <div className="flex gap-4 md:gap-6 items-center">
             <p className="text-green-300 text-md">{time}</p>
+            <ProfileImage session={session}/>
             <button
               onClick={handleSignOut}
               className="flex items-center bg-red-600 p-2 rounded-md hover:bg-red-700"
