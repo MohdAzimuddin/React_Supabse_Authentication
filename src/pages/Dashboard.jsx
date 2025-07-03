@@ -124,7 +124,7 @@ const Dashboard = () => {
       </nav>
       {/* Hero one */}
       <main className="py-6 mx-3 md:mx-8 lg:mx-24">
-        <h1 className="text-xl lg:text-2xl font-semibold">
+        <h1 className="text-sm md:text-xl lg:text-2xl font-semibold">
           Welcome,
           <span className="text-green-600 mx-1">
           {session?.user?.user_metadata?.full_name || session?.user?.email}
