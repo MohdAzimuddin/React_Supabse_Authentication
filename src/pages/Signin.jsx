@@ -42,7 +42,7 @@ const Signin = () => {
       if (result.success) {
         toast.success("Signed-in successfully!");
         setTimeout(() => {
-          toast.success(`welcome Back! ${email} `);
+          toast.success(`welcome! ${session?.user?.name||email} `);
         }, 2500);
       } else {
         toast.error("Sign-in failed,Invalid credential!");
