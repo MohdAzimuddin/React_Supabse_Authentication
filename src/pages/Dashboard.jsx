@@ -124,9 +124,11 @@ const Dashboard = () => {
       </nav>
       {/* Hero one */}
       <main className="py-6 mx-3 md:mx-8 lg:mx-24">
-        <h1 className="text-xl">
-          Welcome back,{" "}
+        <h1 className="text-xl lg:text-2xl font-semibold">
+          Welcome,
+          <span className="text-green-600 mx-1">
           {session?.user?.user_metadata?.full_name || session?.user?.email}
+          </span>
         </h1>
         <p className="text-sm md:text-md lg:text-lg text-gray-400 mt-2">
           Here's yours accout overview and recent activity
