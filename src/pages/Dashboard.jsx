@@ -127,7 +127,7 @@ const Dashboard = () => {
         <h1 className="text-sm md:text-xl lg:text-2xl font-semibold">
           Welcome,
           <span className="text-green-600 mx-1">
-          {session?.user?.user_metadata?.full_name || session?.user?.email}
+            {session?.user?.user_metadata?.full_name||session?.user?.user_metadata?.name || session?.user?.email}
           </span>
         </h1>
         <p className="text-sm md:text-md lg:text-lg text-gray-400 mt-2">
@@ -148,6 +148,7 @@ const Dashboard = () => {
         {filteredUserData.length > 0 && (
           <UserdataCard data={filteredUserData} />
         )}
+
         {/* SessionDataCard */}
         {filteredSessionData && <SessiondataCard data={filteredSessionData} />}
 
