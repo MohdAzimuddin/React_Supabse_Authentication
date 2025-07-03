@@ -15,8 +15,8 @@ export const getUserData = (session) => {
     ? differenceInMinutes(new Date(),user?.last_sign_in_at)
     : null;
 
-  console.log("Created At:", formatDate(user?.created_at));
-  console.log("Last Sign In:", formatDate(user?.last_sign_in_at));
+  // console.log("Created At:", formatDate(user?.created_at));
+  // console.log("Last Sign In:", formatDate(user?.last_sign_in_at));
 
   return [
     {
@@ -64,7 +64,7 @@ export const getUserData = (session) => {
       icon: User2,
       name: "User role",
       data: user?.role,
-      desc: "According to Authentication",
+      desc: "Authenticated user role",
     },
   ];
 };
