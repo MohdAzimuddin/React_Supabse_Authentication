@@ -19,7 +19,7 @@ export const AuthContextProvider = ({ children }) => {
         console.error("Error getting session:", error);
       }
       setSession(session);
-      console.log("session from initial session:-",session)
+      // console.log("session from initial session:-",session)
       setLoading(false);
     };
 
@@ -29,7 +29,7 @@ export const AuthContextProvider = ({ children }) => {
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange(async (event, session) => {
-      console.log("Auth state changed:", event, session);
+      // console.log("Auth state changed:", event, session);
       setSession(session);
       setLoading(false);
 
@@ -55,7 +55,7 @@ export const AuthContextProvider = ({ children }) => {
       });
 
       if (error) {
-        console.log("SignUp not successfull", error);
+        // console.log("SignUp not successfull", error);
         return { success: false, error };
       }
 
@@ -75,7 +75,7 @@ export const AuthContextProvider = ({ children }) => {
       });
 
       if (error) {
-        console.log("SignIn not successfull", error);
+        // console.log("SignIn not successfull", error);
         return { success: false, error };
       }
       return { success: true, data };
@@ -93,7 +93,7 @@ export const AuthContextProvider = ({ children }) => {
       const { error } = await supabase.auth.signOut();
 
       if (error) {
-        console.log("Signout not successfull", error);
+        // console.log("Signout not successfull", error);
         const {
           data: { session },
         } = await supabase.auth.getSession();
@@ -120,7 +120,7 @@ export const AuthContextProvider = ({ children }) => {
         },
       });
 
-      console.log("OAuth redirect response:", data, error);
+      // console.log("OAuth redirect response:", data, error);
 
       if (error) {
         console.error("OAuth sign-in-error:", error);
